@@ -12,9 +12,23 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $subjects = CourseSubject::with('children.children.children')
-                                 ->whereNull('parent_id')
-                                 ->get();
+        $subjects = CourseSubject::with([
+            'children' => function($query) {
+                $query->withCount('course');
+            }
+        ])
+         ->withCount('course')
+         ->whereNull('parent_id')
+         ->get()
+         ->map(function($subject) {
+             $totalCourses = $subject->course_count;
+             foreach ($subject->children as $child) {
+                 $totalCourses += $child->course_count;
+             }
+             $subject->total_course_count = $totalCourses;
+             return $subject;
+         });
+
         // Fetch all courses associated with the subject, including its child subjects
         $courses = Course::with(['subject', 'provider'])
                          ->where('provider_id', 1)

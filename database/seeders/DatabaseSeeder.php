@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
         WpUser::factory()->count(1)->create();
         Provider::factory()->count(3)->create();
         ProviderMedia::factory()->count(2)->create();
-        CourseSubject::factory()->count(20)->create();
+//        CourseSubject::factory()->count(20)->create();
+        $this->call([CourseSubjectSeeder::class]);
         StudyMethod::factory()->count(5)->create();
         Course::factory()->count(150)->create();
     }

@@ -1,3 +1,4 @@
+{{--{{dd($subjects[0]->children)}}--}}
 <header class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
     <div class="container">
 {{--        <div class="site-logo">--}}
@@ -18,8 +19,45 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse foy-navbar" id="navbarNav">
+        <div class="collapse navbar-collapse foy-navbar justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
+                <!-- Subject Dropdown -->
+                <li class="nav-item dropdown subject-dropdown" >
+                    <div class="btn-group dropright">
+                        <a class="nav-link dropdown-toggle" href="#" id="subjectDropdown" role="button" aria-expanded="false">
+                            Subjects
+                        </a>
+                    </div>
+                    <ul class="dropdown-menu p-2" aria-labelledby="subjectDropdown">
+                        @foreach ($subjects as $subject)
+
+                            <li class="dropdown-submenu d-flex py-1">
+                                <img class= "img-rounded" src="{{ asset($subject->image) }}">
+                                <div class="d-block">
+                                    <a class="dropdown-item dropdown-toggle p-0 fw-light" href="{{ url('/subject/' .$subject->slug) }}">
+                                        {{ $subject->name }}
+                                    </a>
+                                    <span class="subject-course-count">({{$subject->total_course_count}} Courses)</span>
+
+                                </div>
+
+                                @if ($subject->children && $subject->children->count())
+                                    <ul class="dropdown-menu p-2">
+                                        @foreach ($subject->children as $child)
+                                            <li class="d-block">
+                                                <a class="dropdown-item fw-normal" href="{{ url('/subject/' .$child->slug) }}">
+                                                    {{ $child->name }}
+                                                    <span class="subject-course-count">({{ $child->course_count }} Courses)</span>
+                                                </a>
+
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
@@ -28,33 +66,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contact') }}">Contact</a>
-                </li>
-
-                <!-- Subject Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="subjectDropdown" role="button" aria-expanded="false">
-                        Subjects
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="subjectDropdown">
-                        @foreach ($subjects as $subject)
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="{{ url('/subject/' .$subject->slug) }}">
-                                    {{ $subject->name }}
-                                </a>
-                                @if ($subject->children && $subject->children->count())
-                                    <ul class="dropdown-menu">
-                                        @foreach ($subject->children as $child)
-                                            <li>
-                                                <a class="dropdown-item" href="{{ url('/subject/' .$child->slug) }}">
-                                                    {{ $child->name }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </li>
-                        @endforeach
-                    </ul>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -67,3 +78,4 @@
 
     </div>
 </header>
+

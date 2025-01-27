@@ -9,9 +9,7 @@ class CourseSubject extends Model
 {
     /** @use HasFactory<\Database\Factories\CourseSubjectFactory> */
     use HasFactory;
-    protected $fillable = [
-        'name', 'parent_id'
-    ];
+    protected $guarded = [];
     public function course()
     {
         return $this->hasMany(Course::class, 'subject_id');
