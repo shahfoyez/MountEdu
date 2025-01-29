@@ -4,11 +4,50 @@ body {
 }
 :root {
     --font-color: #000000;
+    --font-color-active: #ffffff;
+
     --font-secondary-color: rgb(0 0 0 / 65%);
+    --background-color: #eaf8ff;
+    --background-color-active: #000000;
+    --border-color: #000000;
     --font-muted-color: #808080;
     --font-size: 0.9375rem;
     --font-secondary-size: 2rem;
+
+
+    --f-pagination-active-color: #ffffff;
+    --f-pagination-active-bg: #000000;
+    --f-pagination-active-border-color: #000000;
+
+    --f-btn-color: #212529;
+    --f-btn-border-color: #212529;
+    --f-btn-hover-color: #fff;
+    --f-btn-hover-bg: #212529;
+    --f-btn-hover-border-color: #212529;
+    --f-btn-focus-shadow-rgb: 33,37,41;
+    --f-btn-active-color: #fff;
+    --f-btn-active-bg: #212529;
+    --f-btn-active-border-color: #212529;
+    --f-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --f-btn-disabled-color: #212529;
+    --f-btn-disabled-bg: transparent;
+    --f-btn-disabled-border-color: #212529;
+    --f-gradient: none;
 }
+/*override boostrap:start*/
+.btn-dark {
+    --bs-btn-hover-color: #000000;
+    --bs-btn-hover-bg: #ffffff;
+}
+/*override boostrap:end*/
+
+.page-link.active-button{
+    color: var(--f-pagination-active-color);
+    background-color: var(--f-pagination-active-bg);
+    border-color: var(--f-pagination-active-border-color);
+}
+
+
 .navbar-custom .nav-item.dropdown:hover > .dropdown-menu {
     display: block;
     margin-top: 0;
@@ -28,13 +67,27 @@ body {
 .navbar-custom .dropdown-submenu:hover > .dropdown-menu {
     display: block;
 }
-ul.dropdown-menu {
+.subject-dropdown .dropdown-menu {
     width: 360px;
+}
+.subject-dropdown .subject-image {
+    background: var(--background-color);
+    width: 40px;
+    height: 40px;
+}
+.child-subjects {
+    background: #f5f7f8;
+}
+.navbar-custom .main-subjects.show {
+    top: 65px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /*box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;*/
+
 }
 /*.foy-navbar#navbarNav {*/
 /*    justify-content: space-between;*/
 /*}*/
-.logo-subtitle.d-block {
+.logo-subtitle{
     color: #444445;
     font-size: 10px;
 }
@@ -55,7 +108,15 @@ span.subject-course-count {
     font-size: 12px;
     color: var(--font-muted-color);
 }
+.main_wrapper {
+    transition: filter 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
 
+.main_wrapper.blurred {
+    filter: blur(6px);
+    transform: scaleX(0.996);
+    /*background-color: rgba(0, 0, 0, 0.1);*/
+}
 .icon-dark {
     color: #000000;
 }
@@ -64,11 +125,68 @@ span.subject-course-count {
 }
 .navbar-custom {
     height: 80px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    background-color: #fff;
 }
+
 .logo-image{
     height: 50px;
     width: 100px;
 }
+.course-card .course-overview {
+    min-height: 48px;
+    font-weight: 400;
+    font-size: 13px;
+}
+.course-card .course-title {
+    min-height: 48px;
+}
+.card.course-card {
+    border: 1px solid #f1f1f1;
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
+}
+
+.navbar-custom .dropdown-toggle {
+    display: flex;
+    justify-content: space-between; /* Ensures the text and icon are spaced */
+    align-items: center;
+}
+.navbar-custom .dropdown-toggle::after {
+    display: none; /* Hide Bootstrap's default arrow */
+}
+/*.dropdown-toggle::after {*/
+/*    font-family: "Font Awesome 5 Free";*/
+/*    content: "\f105";*/
+/*    font-weight: 900;*/
+/*    margin-left: auto;*/
+/*}*/
+
+
+#scrollUp.active {
+    top: calc(100% - 110px);
+}
+#scrollUp {
+    position: fixed;
+    right: 2%;
+    top: 100%;
+    width: 28px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    border: 2px solid var(--border-color);
+    color: var(--border-color);
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 100px;
+    z-index: 999;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+}
+
+
 footer{
     margin-top:30px;
     display:flex;

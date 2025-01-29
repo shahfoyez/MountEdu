@@ -18,4 +18,8 @@ class Course extends Model
     {
         return $this->belongsTo(Provider::class, 'provider_id');
     }
+    public function media()
+    {
+        return $this->hasMany(CourseMedia::class, 'course_id');
+    }
 }

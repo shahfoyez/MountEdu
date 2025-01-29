@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\CourseMedia;
 use App\Models\CourseSubject;
 use App\Models\Provider;
 use App\Models\ProviderMedia;
@@ -31,6 +32,9 @@ class DatabaseSeeder extends Seeder
 //        CourseSubject::factory()->count(20)->create();
         $this->call([CourseSubjectSeeder::class]);
         StudyMethod::factory()->count(5)->create();
-        Course::factory()->count(150)->create();
+        Course::factory()->count(50000)->create();
+//        CourseMedia::factory()->count()->create();
+        $this->call([CourseMediaSeeder::class]);
+
     }
 }

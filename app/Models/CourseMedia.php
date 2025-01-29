@@ -9,4 +9,9 @@ class CourseMedia extends Model
 {
     /** @use HasFactory<\Database\Factories\CourseMediaFactory> */
     use HasFactory;
+    protected $guarded = [];
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
 }
