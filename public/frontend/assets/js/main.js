@@ -297,9 +297,19 @@
                 return false;
             });
             /*-- WoW-Animation-JS --*/
-            new WOW().init({
+            // new WOW().init({
+            //     mobile: false,
+            // });
+            new WOW({
                 mobile: false,
-            });
+                boxClass: 'wow',
+                animateClass: 'animated',
+                callback: function (box) {
+                    if (box.dataset.wowNoAnimate) {
+                        box.classList.remove('animated');
+                    }
+                }
+            }).init();
         });
         $('.navi-trigger').on('click', function () {
             $(this).toggleClass('active');

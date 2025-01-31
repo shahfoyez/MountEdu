@@ -21,36 +21,48 @@
         </button>
         <div class="collapse navbar-collapse foy-navbar justify-content-between" id="navbarNav">
             <ul class="navbar-nav w-100 align-items-center">
+                <li class="nav-item search-form me-xl-5">
+                    <form class="form-inline">
+                        <div class="search-bar p-0">
+                            <input class="search-input mr-sm-2 border-0 p-2 rounded" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn bg-dark text-light search-button py-2 px-3" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </li>
                 <!-- Subject Dropdown -->
                 <li class="nav-item dropdown subject-dropdown">
                     <div class="btn-group dropright">
                         <a class="nav-link dropdown-toggle" href="#" id="subjectDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Subjects  <i class="fas fa-angle-down ps-1"></i>
                         </a>
-                        <ul class="dropdown-menu border-0 rounded-0 main-subjects" aria-labelledby="subjectDropdown">
+                        <ul class="dropdown-menu border-0 main-subjects DropdownFade" aria-labelledby="subjectDropdown">
                             @foreach ($subjects as $subject)
-                                <li class="dropdown-submenu d-flex py-1 px-3 gap-2">
+                                <li class="dropdown-submenu">
+                                    <a href="{{ url('/subject/' . $subject->slug) }}" class="dropdown-item dropdown-toggle  d-flex py-1 px-3 gap-2">
+                                        <img class="subject-image rounded-circle" src="{{ asset($subject->image) }}">
+                                        <div class="d-flex flex-grow-1 align-items-center">
+                                            <div>
+                                                <p class="main-subject-name p-0 fw-normal lh-1 m-0 text-dark" href="{{ url('/subject/' . $subject->slug) }}">
+                                                    {{ $subject->name }}
+                                                </p>
+                                                <span class="subject-course-count">({{ $subject->total_course_count }} Courses)</span>
+                                            </div>
+                                            <i class="fas fa-angle-right ms-auto"></i>
+                                        </div>
 
-                                    <img class="subject-image rounded-circle" src="{{ asset($subject->image) }}">
-                                    <div class="flex-grow-1">
-                                        <a class="dropdown-item dropdown-toggle p-0 fw-light lh-1" href="{{ url('/subject/' . $subject->slug) }}">
-                                            {{ $subject->name }} <i class="fas fa-angle-right ms-auto"></i>
-                                        </a>
-                                        <span class="subject-course-count">({{ $subject->total_course_count }} Courses)</span>
-                                    </div>
-
-                                    @if ($subject->children && $subject->children->count())
-                                        <ul class="dropdown-menu p-2 border-0 rounded-0 child-subjects">
-                                            @foreach ($subject->children as $child)
-                                                <li class="d-block">
-                                                    <a class="dropdown-item fw-normal" href="{{ url('/subject/' . $child->slug) }}">
-                                                        {{ $child->name }}
-                                                        <span class="subject-course-count">({{ $child->course_count }} Courses)</span>
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
+                                        @if ($subject->children && $subject->children->count())
+                                            <ul class="dropdown-menu p-2 border-0 rounded-right child-subjects">
+                                                @foreach ($subject->children as $child)
+                                                    <li class="d-block">
+                                                        <a class="dropdown-item text-dark fw-normal" href="{{ url('/subject/' . $child->slug) }}">
+                                                            {{ $child->name }}
+                                                            <span class="subject-course-count">({{ $child->course_count }} Courses)</span>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>

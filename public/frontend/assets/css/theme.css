@@ -13,27 +13,8 @@ body {
     --font-muted-color: #808080;
     --font-size: 0.9375rem;
     --font-secondary-size: 2rem;
-
-
-    --f-pagination-active-color: #ffffff;
-    --f-pagination-active-bg: #000000;
-    --f-pagination-active-border-color: #000000;
-
-    --f-btn-color: #212529;
-    --f-btn-border-color: #212529;
-    --f-btn-hover-color: #fff;
-    --f-btn-hover-bg: #212529;
-    --f-btn-hover-border-color: #212529;
-    --f-btn-focus-shadow-rgb: 33,37,41;
-    --f-btn-active-color: #fff;
-    --f-btn-active-bg: #212529;
-    --f-btn-active-border-color: #212529;
-    --f-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --f-btn-disabled-color: #212529;
-    --f-btn-disabled-bg: transparent;
-    --f-btn-disabled-border-color: #212529;
-    --f-gradient: none;
 }
+
 /*override boostrap:start*/
 .btn-dark {
     --bs-btn-hover-color: #000000;
@@ -61,7 +42,7 @@ body {
     position: absolute;
     top: 0;
     left: 100%;
-    margin-top: -1px;
+    margin-top: 0;
     height: 100%;
 }
 .navbar-custom .dropdown-submenu:hover > .dropdown-menu {
@@ -84,6 +65,46 @@ body {
     /*box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;*/
 
 }
+.main-subjects {
+    animation-duration: 0.3s;
+}
+@keyframes DropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.DropdownFade{
+    animation-name: DropdownFade;
+}
+
+.search-form .search-bar{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.search-input {
+    font-family: 'poppins', sans-serif;
+    font-size: 14px;
+    color: rgb(0 0 0 / 55%);
+}
+
 /*.foy-navbar#navbarNav {*/
 /*    justify-content: space-between;*/
 /*}*/
@@ -99,7 +120,7 @@ body {
     margin-top: 25px;
 }
 
-.subject-dropdown a.dropdown-item {
+.subject-dropdown .main-subject-name {
     color: var(--font-secondary-color);
     font-size: 15px;
 }
@@ -116,6 +137,11 @@ span.subject-course-count {
     filter: blur(6px);
     transform: scaleX(0.996);
     /*background-color: rgba(0, 0, 0, 0.1);*/
+}
+.main_wrapper.overlay {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity .1s linear;
 }
 .icon-dark {
     color: #000000;

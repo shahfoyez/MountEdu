@@ -87,22 +87,42 @@
     //         }
     //     });
     // });
+
+
     $(document).ready(function () {
-        // When the subject dropdown button is clicked
-        $('#subjectDropdown').on('click', function (e) {
-            if ($(this).next('.dropdown-menu').is(':visible')) {
+        $('.nav-link.dropdown-toggle').on('click', function () {
+            if ($(this).hasClass('show')) {
                 $('.main_wrapper').addClass('blurred');
             } else {
                 $('.main_wrapper').removeClass('blurred');
             }
         });
 
-        $(document).on('click', function (e) {
-            if (!$(e.target).closest('.subject-dropdown').length) {
+        // Also handle clicks outside the dropdown to remove the class when the dropdown closes
+        $(document).on('click', function (event) {
+            if (!$('.nav-link.dropdown-toggle').is(event.target) ) {
                 $('.main_wrapper').removeClass('blurred');
             }
         });
     });
+
+    // $(document).ready(function () {
+    //     // When the subject dropdown button is clicked
+    //     $('#subjectDropdown').on('click', function (e) {
+    //         if ($(this).next('.dropdown-menu').is(':visible')) {
+    //             $('.main_wrapper').addClass('blurred');
+    //         } else {
+    //             $('.main_wrapper').removeClass('blurred');
+    //         }
+    //     });
+    //
+    //     $(document).on('click', function (e) {
+    //         console.log(!$(e.target).closest('.subject-dropdown').length);
+    //         if (!$(e.target).closest('.subject-dropdown').length) {
+    //             $('.main_wrapper').removeClass('blurred');
+    //         }
+    //     });
+    // });
 
 
 </script>
