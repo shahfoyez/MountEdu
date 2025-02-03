@@ -26,12 +26,8 @@
          visibility: hidden;
          transition-timing-function: linear;
          transition: .4s cubic-bezier(.2,0,.38,.9);
-         /*transition:*/
-         /*    width 0.4s cubic-bezier(.2, 0, .38, .9),*/
-         /*    margin 0.4s cubic-bezier(.2, 0, .38, .9),*/
-         /*    transform 0.4s cubic-bezier(.2, 0, .38, .9);*/
          transform: translateX(-100%) !important;
-         overflow: hidden;
+         /*overflow: hidden;*/
          /*width: 0% !important;*/
     }
      .fadeInLeftFilter {
@@ -39,20 +35,19 @@
          transition: .4s cubic-bezier(.2,0,.38,.9);
          transform: translateX(0%) !important;
          visibility: visible;
-         overflow: hidden;
+         /*overflow: hidden;*/
     }
-    .fadeInLeftCustom {
+    .fadeInLeftC {
         transition: width 0.4s linear;
-        /* Ensure left side remains fixed when shrinking */
-        transform-origin: left;
-        transform: translateX(0); /* Keeps the left position fixed */
+        /*transform-origin: right; !* Keep the right side fixed *!*/
+        transform: translateX(0); /* Maintain position */
     }
 
-    .fadeInRightCustom {
+    .fadeInRightC {
         transition: width 0.8s linear;
-        transform-origin: left; /* Ensures the left side remains fixed */
-        transform: translateX(0); /* Keeps the left position fixed */
-        width: 98% !important; /* Expands from left to right */
+        /*transform-origin: right; !* Keep the right side fixed *!*/
+        transform: translateX(0); /* Maintain position */
+        /*width: 100% !important; !* Expands from right to left *!*/
     }
 
     /* .fadeInRightEE{*/
@@ -73,9 +68,9 @@
         animation-duration: 0.4s;
     }
     @media only screen and (min-width: 992px) {
-        .fadeInRight{
-            margin-top: -300px !important;
-        }
+        /*.fadeInRight{*/
+        /*    margin-top: -325px !important;*/
+        /*}*/
     }
     @media only screen and (max-width: 991px) {
         #filter-form {
@@ -114,12 +109,34 @@
             animation: none;
         }
     }
+    .container {
+        position: relative;
+        /*width: 100%;*/
+        /*height: 200px; !* Adjust based on your need *!*/
+        /*background-color: #f0f0f0; !* For visualization *!*/
+        overflow: hidden;
+    }
+
+    #course-section {
+        position: absolute;
+        right: 0;
+        /*top: 0;*/
+        /*height: 100%;*/
+        /*background-color: #ff885e;*/
+        transition: width 0.4s linear; /* Smooth transition */
+    }
+    #toggleFilter{
+        margin-top: -100px;
+    }
 </style>
 @section('content')
-    <div class="container py-5 min-vh-100">
+    <div class="container py-5 min-vh-100 overflow-hidden">
         <div class="row">
             <div class="col">
                 <h1 class="text-center mb-4"> {{ $subject->name }}</h1>
+                <div class="container">
+                    <div class="section"></div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -243,8 +260,8 @@
             // Adjust the course section and row based on filter visibility
 
             if (filterForm.classList.contains('fadeInLeftFilter') || filterForm.classList.contains('default')) {
-                courseSection.classList.remove('fadeInLeft');
-                courseSection.classList.add('fadeInRight');
+                courseSection.classList.remove('fadeInLeftC');
+                courseSection.classList.add('fadeInRightC');
                 filterForm.classList.remove('fadeInLeftFilter', 'default');
                 filterForm.classList.add('fadeInRightFilter');
 
@@ -254,8 +271,8 @@
                 courseRow.classList.remove('row-cols-xl-3');
                 courseRow.classList.add('row-cols-xl-4');
             } else {
-                courseSection.classList.remove('fadeInRight');
-                courseSection.classList.add('fadeInLeft');
+                courseSection.classList.remove('fadeInRightC');
+                courseSection.classList.add('fadeInLeftC');
                 filterForm.classList.remove('fadeInRightFilter');
                 filterForm.classList.add('fadeInLeftFilter');
 
@@ -267,6 +284,15 @@
                 courseRow.classList.add('row-cols-xl-3');
             }
         });
+        function expand() {
+            document.querySelector('.section').classList.add('expand');
+            document.querySelector('.section').classList.remove('shrink');
+        }
+
+        function shrink() {
+            document.querySelector('.section').classList.add('shrink');
+            document.querySelector('.section').classList.remove('expand');
+        }
 
     </script>
 @endsection
