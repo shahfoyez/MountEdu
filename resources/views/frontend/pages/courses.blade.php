@@ -24,27 +24,31 @@
     /*}*/
      .fadeInRightFilter{
          visibility: hidden;
-         transition-timing-function: linear;
-         transition: .4s cubic-bezier(.2,0,.38,.9);
+         /*transition-timing-function: linear;*/
+         transition: 0.8s cubic-bezier(.2,0,.38,.9);;
+
          transform: translateX(-100%) !important;
          /*overflow: hidden;*/
          /*width: 0% !important;*/
     }
      .fadeInLeftFilter {
-         transition-timing-function: linear;
-         transition: .4s cubic-bezier(.2,0,.38,.9);
+         /*transition-timing-function: linear;*/
+         /*transition: .4s cubic-bezier(.2,0,.38,.9);*/
+         transition: 0.8s cubic-bezier(.2,0,.38,.9);;
+
          transform: translateX(0%) !important;
+
          visibility: visible;
          /*overflow: hidden;*/
     }
     .fadeInLeftC {
-        transition: width 0.4s linear;
+        transition: width 0.8s cubic-bezier(.2,0,.38,.9);;
         /*transform-origin: right; !* Keep the right side fixed *!*/
         transform: translateX(0); /* Maintain position */
     }
 
     .fadeInRightC {
-        transition: width 0.8s linear;
+        transition: width 0.8s cubic-bezier(.2,0,.38,.9);;
         /*transform-origin: right; !* Keep the right side fixed *!*/
         transform: translateX(0); /* Maintain position */
         /*width: 100% !important; !* Expands from right to left *!*/
@@ -60,13 +64,7 @@
     /*     transition-timing-function: linear;*/
     /*     transition: .4s cubic-bezier(.2,0,.38,.9);*/
     /*}*/
-    #filter-form {
-        /*animation: fadeInRightFilter;*/
-        animation-duration: 0.4s;
-    }
-    #course-section {
-        animation-duration: 0.4s;
-    }
+
     @media only screen and (min-width: 992px) {
         /*.fadeInRight{*/
         /*    margin-top: -325px !important;*/
@@ -90,14 +88,14 @@
         }
         .fadeInRightFilter{
             transition-timing-function: ease-out;
-            transition: 0.4s;
+            transition: 0.8s;
             transform: translateX(0%) !important;
             visibility: visible;
         }
 
         .fadeInLeftFilter {
             transition-timing-function: ease-in;
-            transition: 0.4s;
+            transition: 0.8s;
             transform: translateX(100%) !important;
             visibility: hidden;
         }
@@ -123,7 +121,7 @@
         /*top: 0;*/
         /*height: 100%;*/
         /*background-color: #ff885e;*/
-        transition: width 0.4s linear; /* Smooth transition */
+        transition: width 0.8s cubic-bezier(.2,0,.38,.9);;
     }
     #toggleFilter{
         margin-top: -100px;
