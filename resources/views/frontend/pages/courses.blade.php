@@ -118,8 +118,8 @@
     }
 
     #course-section {
-        position: absolute;
-        right: 0;
+        /*position: absolute;*/
+        /*right: 0;*/
         /*top: 0;*/
         /*height: 100%;*/
         /*background-color: #ff885e;*/
@@ -210,7 +210,7 @@
             </div>
 
             <!-- Courses Section -->
-            <div class="col-md-12 col-lg-9 col-xl-9" id="course-section" data-wow-no-animate="true">
+            <div class="col-md-12 col-lg-9 col-xl-9 position-absolute end-0" id="course-section" data-wow-no-animate="true">
                 @if ($courses->isEmpty())
                     <p>No courses available for this subject.</p>
                 @else
